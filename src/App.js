@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useRef } from 'react';
+import SnackBar from './components/SnackBar';
+
+const snackbarType = {
+  success: "success",
+  fail: "fail"
+}
 
 function App() {
+  const snackbarRef = useRef(null);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => {
+        snackbarRef.current.show()
+      }}>show snackbar</button>
+      <SnackBar message="Action completed!" type={snackbarType.fail} ref={snackbarRef} />
     </div>
   );
 }
